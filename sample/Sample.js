@@ -2,7 +2,7 @@ require( '../staging/dwtools/amid/file/fprovider/pNmp.ss' );
 
 var _ = wTools
 
-_.FileProvider.Npm({ packageName : 'wPath' })
+_.FileProvider.Npm({ packageName : 'wTools' })
 .got(( err, provider ) =>
 {
   if( err )
