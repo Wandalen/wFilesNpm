@@ -107,40 +107,59 @@
 
   //
 
-  function fileReadAct( o )
+  function _functor( routineName )
   {
-    var self = this;
-    o.filePath = _.pathJoin( self.versionPath, o.filePath );
-    return _.fileProvider.fileRead( o );
-  }
+    function read( o )
+    {
+      var self = this;
 
-  fileReadAct.defaults = {};
-  fileReadAct.defaults.__proto__ = Parent.prototype.fileReadAct.defaults;
-  fileReadAct.isOriginalReader = 1;
+      if( _.strIs( o ) )
+      {
+        o = { filePath : o }
+      }
+
+      o.filePath = self.pathNativize( o.filePath );
+
+      return _.fileProvider[ routineName ] ( o )
+    }
+
+    return read;
+  }
 
   //
 
-  function directoryReadAct( o )
-  {
-    var self = this;
-    o.filePath = _.pathJoin( self.versionPath, o.filePath );
-    return _.fileProvider.directoryRead( o );
-  }
+  var fileReadAct = _functor( 'fileReadAct' );
+
+  fileReadAct.defaults = {};
+  fileReadAct.defaults.__proto__ = Parent.prototype.fileReadAct.defaults;
+
+  //
+
+  var directoryReadAct = _functor( 'directoryReadAct' );
 
   directoryReadAct.defaults = {};
   directoryReadAct.defaults.__proto__ = Parent.prototype.directoryReadAct.defaults;
 
   //
 
-  function packageFilesGet()
+  var fileStatAct = _functor( 'fileStatAct' );
+
+  fileStatAct.defaults = {};
+  fileStatAct.defaults.__proto__ = Parent.prototype.fileStatAct.defaults;
+
+  //etc
+
+  function pathNativize( filePath )
   {
     var self = this;
-    return _.fileProvider.filesFind
-    ({
-      filePath : self.versionPath,
-      recursive : 1,
-      outputFormat : 'relative'
-    });
+    _.assert( _.pathIsAbsolute( filePath ) );
+
+    var common = _.pathCommon([ self.versionPath, filePath ] )
+
+    if( common !== self.versionPath )
+    return _.pathReroot( self.versionPath, filePath );
+
+    return filePath;
   }
 
   // --
@@ -182,10 +201,15 @@
 
     form : form,
 
+    //act
+
     fileReadAct : fileReadAct,
     directoryReadAct : directoryReadAct,
+    fileStatAct : fileStatAct,
 
-    packageFilesGet : packageFilesGet,
+    //etc
+
+    pathNativize : pathNativize,
 
     //
 
@@ -208,7 +232,12 @@
 
   //
 
-  _.FileProvider = _.FileProvider || {};
+  _.FileProvider.Find.mixin( Self );
+  _.FileProvider.Secondary.mixin( Self );
+  _.FileProvider.Path.mixin( Self );
+
+  //
+
   _.FileProvider.Npm = Self;
 
   if( typeof module !== 'undefined' )
