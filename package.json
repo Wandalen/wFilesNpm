@@ -1,0 +1,49 @@
+{
+  "name": "wfilesnpm",
+  "version": "0.0.1",
+  "engine": "node >= 6.0.0",
+  "description": "Files manipulation library of middle level.",
+  "license": "MIT",
+  "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
+  "contributors": [
+    {
+      "name": "Kostiantyn Wandalen",
+      "email": "wtory.net@domainsbyproxy.com>"
+    },
+    {
+      "name": "Volodymyr M.",
+      "email": "volodymyr.migdal@gmail.com"
+    }
+  ],
+  "main": "staging/dwtools/amid/file/fprovider/pNpm.ss",
+  "files": [
+    "staging/dwtools/amid/file",
+    "production"
+  ],
+  "scripts": {
+    "test": "wtest staging",
+    "make_doc": "./doc.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wandalen/wFilesNpm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Wandalen/wFilesNpm/issues"
+  },
+  "dependencies": {
+    "wFiles": "",
+    "tar": ""
+  },
+  "devDependencies": {
+    "wTesting": "",
+    "wFilesNpm": "."
+  },
+  "keywords": [
+    "wTools",
+    "wFilesNpm",
+    "npm",
+    "read file",
+    "write file"
+  ]
+}
