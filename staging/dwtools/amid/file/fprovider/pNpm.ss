@@ -56,10 +56,11 @@ function form()
   })
   .doThen( ( err, got ) =>
   {
-    self.packageInfo = JSON.parse( got );
-    self.version = self.packageInfo[ 'dist-tags' ].latest;
-    self.latestInfo = self.packageInfo.versions[ self.version ];
-    self.packageArchiveUrl = self.latestInfo.dist.tarball;
+    debugger
+    self[ packageInfo ] = JSON.parse( got );
+    self[ version ] = self.packageInfo[ 'dist-tags' ].latest;
+    self[ latestInfo ] = self.packageInfo.versions[ self.version ];
+    self[ packageArchiveUrl ] = self.latestInfo.dist.tarball;
     _.assert( _.urlIs( self.packageArchiveUrl ) )
   })
   .doThen( ( err, got ) =>
@@ -67,16 +68,16 @@ function form()
     if( !self.packagePath )
     {
       var tempDir = _.pathResolve( __dirname, '../../../tmp.tmp' );
-      self.packagePath = _.pathJoin( tempDir, self.packageName );
+      self[ packagePath ] = _.pathJoin( tempDir, self.packageName );
     }
 
-    var tarballName = _.pathName({ path : self.packageArchiveUrl, withExtension : 1 });
+    var tarballName = _.pathName({ path : self.packageArchiveUrl , withExtension : 1 });
     var tarballPath = _.pathJoin( self.packagePath,tarballName );
     var extractPath = _.pathJoin( _.pathDir( tarballPath ), _.pathName( self.packageArchiveUrl ) );
 
-    self.versionPath = _.pathJoin( extractPath, 'package' );
+    self[ versionPath ] = _.pathJoin( extractPath, 'package' );
 
-    if( _.fileProvider.fileStat( self.versionPath ) )
+    if( _.fileProvider.fileStat( self.versionPath  ) )
     return;
 
     return self.urlProvider.fileCopyToHardDrive
@@ -87,20 +88,23 @@ function form()
     .doThen( ( err, path ) =>
     {
       if( !err )
-      console.log( 'Donwloaded to -> ', path )
+      self.logger.log( 'Donwloaded to -> ', path )
 
       var tar = require( 'tar' );
 
       _.fileProvider.directoryMake( extractPath );
 
-      var con = wConsequence.from( tar.extract
+      var extracted = tar.extract
       ({
         file : path,
         cwd : extractPath
-      }));
+      });
 
-      con.ifNoErrorThen( () => { console.log( 'extracted to ->', extractPath ) } )
-      return con;
+      return wConsequence.from( extracted )
+      .ifNoErrorThen( () =>
+      {
+        self.logger.log( 'Extracted to ->', extractPath )
+      })
     })
   })
 }
@@ -120,22 +124,37 @@ function _functor( routineName, having )
 
     o.filePath = self.pathNativize( o.filePath );
 
-    return _.fileProvider[ routineName ] ( o )
+    return _.fileProvider[ routineName ].call( self, o );
   }
+
+  //
 
   function record( filePath, recordOptions )
   {
     var self = this;
 
+    var pathWasString = false;
+
+    if( _.strIs( filePath ) )
+    {
+      filePath = _.arrayAs(  filePath )
+      pathWasString = true;
+    }
+
     if( _.arrayLike( filePath ) )
     {
       for( var i = 0; i < filePath.length; i++ )
-      filePath[ i ] = self.pathNativize( filePath[ i ] );
+      {
+        if( !_.pathIsAbsolute( filePath[ i ] ) )
+        filePath[ i ] = _.pathJoin( recordOptions.dir, filePath[ i ] );
+        filePath[ i ] = self.pathNativize( filePath[ i ] );
+      }
     }
-    else
-    filePath = self.pathNativize( filePath );
 
-    return _.fileProvider[ routineName ] ( filePath, recordOptions );
+    if( pathWasString )
+    filePath = filePath[ 0 ];
+
+    return _.fileProvider[ routineName ].call( self, filePath, recordOptions );
   }
 
   if( having.reading )
@@ -163,13 +182,22 @@ function pathNativize( filePath )
   return filePath;
 }
 
+//
+
+var packagePath = Symbol.for( 'packagePath' );
+var versionPath = Symbol.for( 'versionPath' );
+var packageInfo = Symbol.for( 'packageInfo' );
+var latestInfo = Symbol.for( 'latestInfo' );
+var version = Symbol.for( 'version' );
+var packageArchiveUrl = Symbol.for( 'packageArchiveUrl' );
+
 // --
 // relationship
 // --
 
 var Composes =
 {
-  packageName : null
+  packageName : null,
 }
 
 var Aggregates =
@@ -183,12 +211,16 @@ var Associates =
 var Restricts =
 {
   urlProvider : null,
+}
 
-  packagePath : null,
-  versionPath : null,
-  packageInfo : null,
-  version : null,
-  packageArchiveUrl : null
+var Accessors =
+{
+  packagePath : 'packagePath',
+  versionPath : 'versionPath',
+  packageInfo : 'packageInfo',
+  latestInfo : 'latestInfo',
+  version : 'version',
+  packageArchiveUrl : 'packageArchiveUrl'
 }
 
 // --
@@ -222,22 +254,16 @@ for( var k in Parent.prototype )
 
   if( r.having )
   {
-    if( r.having.bare && r.having.reading )
+    var isBareReading = r.having.bare && r.having.reading;
+    var isRecordReading = !r.having.bare && r.having.record;
+    if( isBareReading || isRecordReading )
     {
       Proto[ k ] = _functor( k, r.having );
       Proto[ k ].defaults = {};
       Proto[ k ].defaults.__proto__ = r.defaults;
     }
 
-    if( !r.having.bare && r.having.record )
-    {
-      Proto[ k ] = _functor( k, r.having );
-      Proto[ k ].defaults = {};
-      Proto[ k ].defaults.__proto__ = r.defaults;
-    }
   }
-
-
 }
 
 //
@@ -248,6 +274,8 @@ _.classMake
   parent : Parent,
   extend : Proto,
 });
+
+_.accessorReadOnly( Self.prototype, Accessors);
 
 //
 
