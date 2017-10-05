@@ -11,11 +11,14 @@ _.FileProvider.Npm({ packageName : 'wTools' })
   var file = provider.fileRead( '/staging/dwtools/Base.s' );
   console.log( file )
 
-  // var files = provider.directoryRead( '/staging/dwtools' );
-  // console.log( files )
+  var files = provider.directoryRead( '/staging/dwtools' );
+  console.log( files )
 
   // var files = provider.filesFindRecursive({ filePath :  '/', outputFormat : 'relative' });
   // console.log( files );
+
+  // var record = provider.fileRecord( '/' );
+  // console.log( record );
 
   // var stat = provider.fileStat( '/staging/dwtools/Base.s' );
   // console.log( stat )
