@@ -66,15 +66,15 @@
     {
       if( !self.packagePath )
       {
-        var tempDir = _.pathResolve( __dirname, '../../../tmp.tmp' );
-        self.packagePath = _.pathJoin( tempDir, self.packageName );
+        var tempDir = _.resolve( __dirname, '../../../tmp.tmp' );
+        self.packagePath = _.join( tempDir, self.packageName );
       }
 
-      var tarballName = _.pathName({ path : self.packageArchiveUrl, withExtension : 1 });
-      var tarballPath = _.pathJoin( self.packagePath,tarballName );
-      var extractPath = _.pathJoin( _.pathDir( tarballPath ), _.pathName( self.packageArchiveUrl ) );
+      var tarballName = _.name({ path : self.packageArchiveUrl, withExtension : 1 });
+      var tarballPath = _.join( self.packagePath,tarballName );
+      var extractPath = _.join( _.dir( tarballPath ), _.name( self.packageArchiveUrl ) );
 
-      self.versionPath = _.pathJoin( extractPath, 'package' );
+      self.versionPath = _.join( extractPath, 'package' );
 
       if( _.fileProvider.fileStat( self.versionPath ) )
       return;
@@ -118,7 +118,7 @@
         o = { filePath : o }
       }
 
-      o.filePath = self.pathNativize( o.filePath );
+      o.filePath = self.nativize( o.filePath );
 
       return _.fileProvider[ routineName ] ( o )
     }
@@ -149,15 +149,15 @@
 
   //etc
 
-  function pathNativize( filePath )
+  function nativize( filePath )
   {
     var self = this;
-    _.assert( _.pathIsAbsolute( filePath ) );
+    _.assert( _.isAbsolute( filePath ) );
 
-    var common = _.pathCommon([ self.versionPath, filePath ] )
+    var common = _.common([ self.versionPath, filePath ] )
 
     if( common !== self.versionPath )
-    return _.pathReroot( self.versionPath, filePath );
+    return _.reroot( self.versionPath, filePath );
 
     return filePath;
   }
@@ -209,7 +209,7 @@
 
     //etc
 
-    pathNativize : pathNativize,
+    nativize : nativize,
 
     //
 

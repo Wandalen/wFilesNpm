@@ -1,6 +1,7 @@
 {
   "name": "wfilesnpm",
   "version": "0.0.2",
+  "enabled": 0,
   "engine": "node >= 6.0.0",
   "description": "Files manipulation library of middle level.",
   "license": "MIT",
@@ -8,7 +9,7 @@
   "contributors": [
     {
       "name": "Kostiantyn Wandalen",
-      "email": "wanalen@willbe.so>"
+      "email": "wanalen@willbe.so"
     },
     {
       "name": "Volodymyr M.",
