@@ -1,6 +1,6 @@
 {
   "name": "wfilesnpm",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "enabled": 0,
   "engine": "node >= 6.0.0",
   "description": "Files manipulation library of middle level.",
