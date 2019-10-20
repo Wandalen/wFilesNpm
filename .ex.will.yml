@@ -21,13 +21,16 @@ about :
 path :
 
   repository : git+https://github.com/Wandalen/wFilesNpm.git
+  remotes :
+   - git+https:///github.com/Wandalen/wFilesNpm.git
+   - npm:///wfilesnpm
   bugs : https://github.com/Wandalen/wFilesNpm/issues
 
 step :
 
   export.proto :
     inherit : export
-    export : path::proto
+    export : path::export
     tar : 0
     criterion :
       debug : 1

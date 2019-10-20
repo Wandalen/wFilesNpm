@@ -4,6 +4,7 @@ submodule :
 path :
 
   proto : './proto'
+  export : '{path::proto}/**'
   in : '.'
   out : 'out'
   out.debug :
