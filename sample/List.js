@@ -1,4 +1,4 @@
-require( '../staging/dwtools/amid/file/fprovider/pNmp.ss' );
+require( '../proto/dwtools/amid/file/fprovider/pNmp.ss' );
 
 var _ = wTools;
 
