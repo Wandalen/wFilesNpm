@@ -17,6 +17,5 @@ _.FileProvider.Npm({ packageName : 'wTools' })
   // var files = provider.filesFindRecursive({ filePath :  '/', outputFormat : 'relative' });
   // console.log( files );
 
-  // var stat = provider.fileStat( '/proto/dwtools/Base.s' );
   // console.log( stat )
 })
