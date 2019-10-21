@@ -21,7 +21,7 @@ about :
 path :
 
   repository : git+https://github.com/Wandalen/wFilesNpm.git
-  remotes :
+  origins :
    - git+https:///github.com/Wandalen/wFilesNpm.git
    - npm:///wfilesnpm
   bugs : https://github.com/Wandalen/wFilesNpm/issues
