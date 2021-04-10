@@ -8,7 +8,7 @@ if( typeof module !== 'undefined' )
 
 	require( '../file/fprovider/pNpm.ss' );
 
-	var _ = wTools;
+	let _ = wTools;
 
 	_.include( 'wTesting' );
 
@@ -16,8 +16,8 @@ if( typeof module !== 'undefined' )
 
 //
 
-var _ = wTools;
-var Parent = wTools.Tester;
+let _ = wTools;
+let Parent = wTools.Tester;
 
 //
 
@@ -208,7 +208,7 @@ function filesFindRecursive( t )
 // proto
 // --
 
-var Self =
+let Self =
 {
 
 	name : 'FileProvider.Npm test',

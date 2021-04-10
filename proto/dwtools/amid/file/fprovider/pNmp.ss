@@ -12,19 +12,14 @@
 
   }
 
-  var _ = wTools;
+  let _ = wTools;
 
   //
 
-  var Parent = _.FileProvider.Partial;
-  var Self = function wFileProviderNpm( o )
+  let Parent = _.FileProvider.Partial;
+  let Self = function wFileProviderNpm( o )
   {
-    if( !( this instanceof Self ) )
-    if( o instanceof Self )
-    return o;
-    else
-    return new( _.routineJoin( Self, Self, arguments ) );
-    return Self.prototype.init.apply( this,arguments );
+    return _.workpiece.construct( Self, this, arguments );
   }
 
   //

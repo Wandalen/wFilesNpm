@@ -4,7 +4,7 @@ about :
   name : "wFilesNpm"
   description : "Files manipulation library of middle level."
   version : "0.0.3"
-  enabled : 1
+  enabled : 0
   interpreters :
   - nodejs >= 6.0.0
   - chrome >= 60.0.0
@@ -13,11 +13,11 @@ about :
   - wTools
 
 # execution :
-# 
+#
 # scripts :
 # test : wtest staging
 # docgen : wdocgen staging
-# 
+#
 path :
 
   repository : git+https://github.com/Wandalen/wFilesNpm.git
@@ -49,4 +49,3 @@ build :
     steps :
       - build::debug.raw
       - step::export.proto
-

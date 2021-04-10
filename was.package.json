@@ -2,24 +2,24 @@
   "name": "wfilesnpm",
   "version": "0.0.3",
   "enabled": 0,
-  "engine": "node >= 8.0.0",
+  "engine": "node >= 10.0.0",
   "description": "Files manipulation library of middle level.",
   "license": "MIT",
-  "author": "Kostiantyn Wandalen <wanalen@willbe.so>",
+  "author": "Kostiantyn Wandalen <wanalen@01.school>",
   "contributors": [
     {
       "name": "Kostiantyn Wandalen",
-      "email": "wanalen@willbe.so"
+      "email": "wanalen@01.school"
     },
     {
       "name": "Volodymyr M.",
       "email": "volodymyr.migdal@gmail.com"
     }
   ],
-  "main": "proto/dwtools/amid/file/fprovider/pNpm.ss",
+  "main": "proto/wtools/amid/file/fprovider/pNpm.ss",
   "files": [
-    "proto/dwtools/amid/file",
-    "proto/dwtools/Tools.s", "out"
+    "proto/wtools/amid/file",
+    "proto/node_modules/Tools", "out"
   ],
   "scripts": {
     "test": "wtest staging",

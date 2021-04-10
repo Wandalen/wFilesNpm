@@ -1,6 +1,6 @@
-require( '../proto/dwtools/amid/file/fprovider/pNmp.ss' );
+require( '../proto/wtools/amid/file/fprovider/pNmp.ss' );
 
-var _ = wTools;
+let _ = wTools;
 
 _.FileProvider.Npm({ packageName : 'wTools' })
 .got(( err, provider ) =>

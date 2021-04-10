@@ -1,6 +1,6 @@
-require( '../proto/dwtools/amid/file/fprovider/pNmp.ss' );
+require( '../proto/wtools/amid/file/fprovider/pNmp.ss' );
 
-var _ = wTools
+let _ = wTools
 
 _.FileProvider.Npm({ packageName : 'wTools' })
 .got(( err, provider ) =>
@@ -8,10 +8,10 @@ _.FileProvider.Npm({ packageName : 'wTools' })
   if( err )
   throw err;
 
-  var file = provider.fileRead( '/proto/dwtools/Base.s' );
+  var file = provider.fileRead( '/proto/wtools/Base.s' );
   console.log( file )
 
-  // var files = provider.directoryRead( '/proto/dwtools' );
+  // var files = provider.directoryRead( '/proto/wtools' );
   // console.log( files )
 
   // var files = provider.filesFindRecursive({ filePath :  '/', outputFormat : 'relative' });
