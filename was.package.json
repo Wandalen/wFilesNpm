@@ -1,28 +1,26 @@
 {
   "name": "wfilesnpm",
   "version": "0.0.3",
-  "enabled": 0,
+  "enabled": 1,
   "engine": "node >= 10.0.0",
-  "description": "Files manipulation library of middle level.",
+  "description": "Implements file provider to access files over NPM.",
   "license": "MIT",
   "author": "Kostiantyn Wandalen <wanalen@01.school>",
   "contributors": [
-    {
-      "name": "Kostiantyn Wandalen",
-      "email": "wanalen@01.school"
-    },
-    {
-      "name": "Volodymyr M.",
-      "email": "volodymyr.migdal@gmail.com"
-    }
+    "Kostiantyn Wandalen <wanalen@01.school>",
+    "Volodymyr M. <volodymyr.migdal@gmail.com>",
+    "Dmytro Kryvoruchko <dm.vict.kr@gmail.com>"
   ],
-  "main": "proto/wtools/amid/file/fprovider/pNpm.ss",
+  "main": "proto/node_modules/wfilesnpm",
   "files": [
-    "proto/wtools/amid/file",
-    "proto/node_modules/Tools", "out"
+    "proto/wtools/amid/l4_files",
+    "proto/node_modules",
+    "proto/node_modules/Tools",
+    "proto/node_modules/wfilesnpm",
+    "out"
   ],
   "scripts": {
-    "test": "wtest staging",
+    "test": "wtest \"proto/**\" rapidity:-3",
     "docgen": "wdocgen proto"
   },
   "repository": {
@@ -33,12 +31,13 @@
     "url": "https://github.com/Wandalen/wFilesNpm/issues"
   },
   "dependencies": {
-    "wFiles": "",
-    "tar": ""
+    "wfilesbasic": "",
+    "wnpmtools": "",
+    "tar": "6.0.2"
   },
   "devDependencies": {
     "wTesting": "",
-    "wFilesNpm": "."
+    "eslint": "7.1.0"
   },
   "keywords": [
     "wTools",
