@@ -31,12 +31,12 @@
     "url": "https://github.com/Wandalen/wFilesNpm/issues"
   },
   "dependencies": {
-    "wnpmtools": "",
-    "wfilesbasic": "",
+    "wnpmtools": "latest",
+    "wfilesbasic": "latest",
     "tar": "6.0.2"
   },
   "devDependencies": {
-    "wTesting": "",
+    "wTesting": "latest",
     "eslint": "7.1.0"
   },
   "keywords": [
