@@ -298,10 +298,10 @@ submodule:
     path: 'npm:///wnpmtools'
     enabled: 0
   tar:
-    path: 'npm:///tar#6.0.2'
+    path: 'npm:///tar!6.1.11'
     enabled: 0
   eslint:
-    path: 'npm:///eslint#7.1.0'
+    path: 'npm:///eslint!7.1.0'
     enabled: 0
     criterion:
       development: 1

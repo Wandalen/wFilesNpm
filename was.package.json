@@ -33,7 +33,7 @@
   "dependencies": {
     "wnpmtools": "",
     "wfilesbasic": "",
-    "tar": "6.0.2"
+    "tar": "6.1.11"
   },
   "devDependencies": {
     "wTesting": "",
