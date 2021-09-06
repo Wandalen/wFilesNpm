@@ -3,8 +3,8 @@ root:
   - wFilesNpm.out
 consistency:
   ../will.yml: &ref_0
-    hash: 1bfe19b50807b58b136114e48494860b
-    size: 6607
+    hash: 13f847ba6a8663cc823ea37f075d92a9
+    size: 6608
 module:
   wFilesNpm.out:
     about:
@@ -178,11 +178,11 @@ module:
         autoExporting: 0
         enabled: 0
       tar:
-        path: 'npm:///tar#6.0.2'
+        path: 'npm:///tar!6.1.11'
         autoExporting: 0
         enabled: 0
       eslint:
-        path: 'npm:///eslint#7.1.0'
+        path: 'npm:///eslint!7.1.0'
         autoExporting: 0
         enabled: 0
         criterion:
@@ -922,11 +922,11 @@ module:
         autoExporting: 0
         enabled: 0
       tar:
-        path: 'npm:///tar#6.0.2'
+        path: 'npm:///tar!6.1.11'
         autoExporting: 0
         enabled: 0
       eslint:
-        path: 'npm:///eslint#7.1.0'
+        path: 'npm:///eslint!7.1.0'
         autoExporting: 0
         enabled: 0
         criterion:
@@ -1469,5 +1469,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 1bfe19b50807b58b136114e48494860b
-        size: 6607
+        hash: 13f847ba6a8663cc823ea37f075d92a9
+        size: 6608
