@@ -1,6 +1,6 @@
 {
   "name": "wfilesnpm",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "enabled": 1,
   "engine": "node >= 10.0.0",
   "description": "Implements file provider to access files over NPM.",
