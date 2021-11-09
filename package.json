@@ -1,6 +1,6 @@
 {
   "name": "wfilesnpm",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "enabled": 1,
   "engine": "node >= 10.0.0",
   "description": "Implements file provider to access files over NPM.",
@@ -31,12 +31,12 @@
     "url": "https://github.com/Wandalen/wFilesNpm/issues"
   },
   "dependencies": {
-    "wnpmtools": "gamma",
-    "wfilesbasic": "gamma",
+    "wnpmtools": "delta",
+    "wfilesbasic": "delta",
     "tar": "6.1.11"
   },
   "devDependencies": {
-    "wTesting": "gamma",
+    "wTesting": "delta",
     "eslint": "7.32.0"
   },
   "keywords": [
