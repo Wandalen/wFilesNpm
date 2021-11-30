@@ -5,9 +5,9 @@
   "engine": "node >= 10.0.0",
   "description": "Implements file provider to access files over NPM.",
   "license": "MIT",
-  "author": "Kostiantyn Wandalen <wanalen@01.school>",
+  "author": "Kostiantyn Wandalen <wandalen@obox.systems>",
   "contributors": [
-    "Kostiantyn Wandalen <wanalen@01.school>",
+    "Kostiantyn Wandalen <wandalen@obox.systems>",
     "Volodymyr M. <volodymyr.migdal@gmail.com>",
     "Dmytro Kryvoruchko <dm.vict.kr@gmail.com>"
   ],
